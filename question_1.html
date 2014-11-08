@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+    <style>
+        /* Base Styling*/
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font: 200 1em 'Helvetica Neue', 'Segoe UI', 'Droid Sans', 'Helvetica';
+            /*padding: 0;*/
+            margin: 0;
+        }
+
+        input, select, textarea {
+            font: 200 1em 'Helvetica Neue', 'Segoe UI', 'Droid Sans', 'Helvetica';
+            outline: none;
+            border: 1px solid #eee;
+            padding: 0.35em 0.5em;
+            background-color: transparent;
+        }
+
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            width: 970px;
+        }
+
+
+        header {
+            top: 0;
+            padding: 0;
+            margin: 0;
+            position: fixed;
+            color: white;
+            background-color: black;
+            width: 100%;
+
+        }
+
+        ul.nav {
+        }
+
+        ul.nav > li {
+            /*margin: 0.5em;*/
+            display: block;
+            float: left;
+            padding:1.5em 1em;
+        }
+
+        ul.nav > li:hover {
+            /*padding: 3em;*/
+            background-color: darkgrey;
+
+        }
+
+        ul.nav > li > a {
+            color: white;
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        ul.dropdown {
+            list-style: none;
+            position: absolute;
+            display: none;
+            padding-bottom: 20px;
+        }
+
+        ul.dropdown li {
+            margin-left: -50px;
+            text-align: left;;
+            display: block;
+            padding: 1.5em 2em;
+            color: black;
+            background-color: #eee;
+        }
+        ul.dropdown li > a {
+            color: black;
+            text-decoration: none;
+        }
+        ul.dropdown li:first-child {
+            margin-top: 25px;
+        }
+
+        ul.nav li:hover ul.dropdown {
+            display: block;
+        }
+
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <ul class="nav">
+            <li><a href="#">Home</a></li>
+            <li>
+                <a href="#">Tools</a>
+                <ul class="dropdown">
+                    <li><a href="#">ST2</a></li>
+                    <li><a href="#">WordPress</a></li>
+                    <li><a href="#">Dreamweaver</a></li>
+                    <li><a href="#">Flash</a></li>
+                    <li><a href="#">Photoshop</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Screencasts</a></li>
+            <li><a href="#">HTML5</a></li>
+            <li><a href="#">Odds & Ends</a></li>
+            <li><a href="#">5 Star Music</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+</header>
+<script>
+</script>
+</body>
+</html>

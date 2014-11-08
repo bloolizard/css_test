@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+        }
+        .panel {
+
+        }
+
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            width: 970px;
+        }
+
+        .content {
+
+        }
+
+        ul {
+            position: relative;
+            height: 700px;
+            text-align: center;
+        }
+
+        ul > li {
+
+            background-size: cover;
+            background-color: #eee;
+            height: 600px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        li.slide {
+            position: relative;
+            display: inline-block;
+
+
+        }
+
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+<div class="slider">
+<ul>
+    <li id="slide-1" class="slide">
+        <img src="img/ella-hero-2.jpg" alt=""/>
+    </li>
+    <li id="slide-2" class="slide">
+        <img src="ss-slide.jpg" alt=""/>
+    </li>
+
+
+</ul>
+</div>
+
+<script>
+window.addEventListener('load', function(){
+
+    var slider_ul = document.getElementsByTagName('ul')[0];
+    var count = slider_ul.children.length;
+    console.log(count);
+    console.log(slider_ul.children[count-1]);
+
+//            todo: Animation Function for Slider
+//    setInterval(function(){
+//        //add a transition that moves slider
+//        slider_ul.insertBefore(slider_ul.children[count-1],
+//                slider_ul.firstElementChild);
+//        console.log('Test');
+//    }, 5000);
+});
+</script>
+</body>
+</html>
