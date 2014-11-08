@@ -11,43 +11,29 @@
 
         html {
         }
-        .panel {
 
-        }
-
-        .container {
-            padding-right: 15px;
-            padding-left: 15px;
-            margin-right: auto;
-            margin-left: auto;
+        div.slider {
             width: 970px;
-        }
-
-        .content {
+            height: 1000px;
+            overflow: hidden;
 
         }
 
         ul {
             position: relative;
-            height: 700px;
-            text-align: center;
+            -webkit-transition: 0.5s left;
+            margin: 0;
+            padding: 0;
+            list-style: none;
         }
 
-        ul > li {
-
-            background-size: cover;
-            background-color: #eee;
-            height: 600px;
-            overflow: hidden;
-            width: 100%;
+        div.slider > ul > li {
+            float: left;
+            width: 970px;
+            height: 1000px;
         }
 
-        li.slide {
-            position: relative;
-            display: inline-block;
 
-
-        }
 
 
 
@@ -60,11 +46,11 @@
 <body>
 <div class="slider">
 <ul>
-    <li id="slide-1" class="slide">
+    <li>
         <img src="img/ella-hero-2.jpg" alt=""/>
     </li>
-    <li id="slide-2" class="slide">
-        <img src="ss-slide.jpg" alt=""/>
+    <li>
+        <img src="img/ss-slide.jpg" alt=""/>
     </li>
 
 
@@ -72,12 +58,48 @@
 </div>
 
 <script>
-window.addEventListener('load', function(){
 
-    var slider_ul = document.getElementsByTagName('ul')[0];
-    var count = slider_ul.children.length;
-    console.log(count);
-    console.log(slider_ul.children[count-1]);
+    var Slider = function(){this.initialize.apply(this, arguments)};
+    Slider.prototype = {
+        initialize: function(slider){
+            this.ul = slider.children[0];
+            this.li = this.ul.children;
+
+
+            // make <ul> as large as all <li>'s
+            this.ul.style.width = (this.li[0].clientWidth * this.li.length);
+            this.currentIndex = 0;
+        },
+
+        goTo: function(index){
+            // filter invalid indices
+
+            if (index < 0 || index > this.li.length - 1){
+                return;
+            }
+
+            this.ul.style.left = '-' + (100 * index) + '%';
+
+            this.currentIndex = index;
+
+
+        },
+
+        goToPrev: function(){
+            this.goTo(this.currentIndex - 1)
+        },
+
+        goToNext: function(){
+            this.goTo(this.currentIndex + 1);
+        }
+    };
+
+
+    var slider = document.getElementsByClassName('slider')[0];
+    console.log(slider);
+
+    var _s = new Slider(slider);
+
 
 //            todo: Animation Function for Slider
 //    setInterval(function(){
@@ -86,7 +108,7 @@ window.addEventListener('load', function(){
 //                slider_ul.firstElementChild);
 //        console.log('Test');
 //    }, 5000);
-});
+
 </script>
 </body>
 </html>

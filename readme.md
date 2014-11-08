@@ -1,3 +1,3 @@
 ## CSS Test for GoLive Labs
 
-&copy; Edwin Villanueva 2014
+&copy; 2014 Edwin Villanueva
