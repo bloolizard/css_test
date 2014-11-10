@@ -10,14 +10,16 @@
         }
 
         .container {
-            margin-left: 10%;
-            margin-right: 10%;
+            height: 100%;
+            width: 100%;
         }
 
         div.slider {
-            width: 970px;
-            height: 1000px;
+            width: 100%;
+            background-color: grey;
             overflow: hidden;
+            position: relative;
+
 
         }
 
@@ -30,64 +32,97 @@
         }
 
         div.slider > ul > li {
+            display: block;
             float: left;
-            width: 970px;
-            height: 1000px;
-        }
-
-        div.clear{
-            clear: both;
+            width: 100vw;
+            height: 92vh;
         }
 
         div.slider_controls {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
             text-align: center;
         }
 
-        div.slider_controls > ul{
+        div.slider_controls > ol{
             display: inline-block;
         }
 
-        ul.controls > li {
+        ol.controls > li {
             list-style: none;
             float: left;
             margin: 1em;
         }
 
+        ol.controls > li > a {
+            height: 11px;
+            width: 11px;
+            background-color:rgba(255,255,255,0.23);
+            border-radius: 20px;
+            display: block;
+            text-indent: -9999px;
+            box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+        }
 
+        ol.controls > li > a:hover {
+            background-color: #fff;
+        }
 
+        .clearfix:after {
+            content: " ";
+            display: block;
+            height: 0;
+            clear: both;
+        }
 
-
-
-
-
-
+        /* for later on controls, they use text-ident -9999px*/
     </style>
 </head>
 <body>
-<div class="container">
-<div class="slider">
-<ul>
-    <li>
-        <img src="img/ella-hero-2.jpg" alt=""/>
-    </li>
-    <li>
-        <img src="img/ss-slide.jpg" alt=""/>
-    </li>
 
-
+<div class="slider clearfix">
+<ul class="slider_ul">
+    <li style="background: url('img/ella-hero-2.jpg') no-repeat; background-size: cover">
+        <div>This was really annoything :(</div>
+    </li>
+    <li style="background-image: url('img/ss-slide.jpg'); background-size: cover"></li>
+    <li style="background-image: url('img/ella-hero-2.jpg'); background-size: cover"></li>
+    <li style="background-image: url('img/ella-hero-2.jpg'); background-size: cover"></li>
+    <li style="background-image: url('img/ella-hero-2.jpg'); background-size: cover"></li>
+    <li style="background-image: url('img/ella-hero-2.jpg'); background-size: cover"></li>
 </ul>
+    <div class="slider_controls">
+        <ol class="controls">
+            <!--<li><a>1</a></li>-->
+            <!--<li><a>2</a></li>-->
+            <!--<li><a>3</a></li>-->
+            <!--<li><a>4</a></li>-->
+            <!--<li><a>5</a></li>-->
+        </ol>
+    </div>
 </div>
-<div class="clear"></div>
-<div class="slider_controls">
-    <ul class="controls">
-        <li>Prev</li>
-        <li>Next</li>
-    </ul>
-</div>
-</div>
+
+
+
 <script>
 
+    // get window height, apply is to li items
+//    var height = document.documentElement.clientHeight;
+//    var width = document.documentElement.clientWidth;
+//    Array.prototype.forEach.call(document.getElementsByClassName('slider')[0].children[0].children, function(el){
+//       el.style.height = height + 'px';
+//       el.style.width = width + 'px';
+//        console.log(el);
+//    });
+
+
+    // Questio 3 for CSS test
+    // http://verbbrands.com/#our-work
+    // based off this tutorial here http://rafbm.github.io/howtomakeaslider/
+
     var Slider = function(){this.initialize.apply(this, arguments)};
+
     Slider.prototype = {
         initialize: function(slider){
             this.ul = slider.children[0];
@@ -95,8 +130,30 @@
 
 
             // make <ul> as large as all <li>'s
-            this.ul.style.width = (this.li[0].clientWidth * this.li.length);
+            this.ul.style.width = (this.li[0].clientWidth * this.li.length) + 'px';
             this.currentIndex = 0;
+            this.generateControls(this.li);
+        },
+
+        generateControls: function(slides){
+            // generate an li item control for each slide
+            for (var i = 0; i < slides.length; i++){
+                var li = document.createElement('li');
+                var a = document.createElement('a');
+                a.innerHTML = i;
+                li.appendChild(a);
+                (document.getElementsByClassName('controls')[0]).appendChild(li);
+            }
+
+            var self = this;
+
+            // add event listeners to controls
+            [].forEach.call((document.getElementsByClassName('controls')[0]).children, function(elem){
+                var index = elem.innerText;
+                elem.addEventListener('click', function(){
+                    self.goTo(index);
+                });
+            });
         },
 
         goTo: function(index){
@@ -107,9 +164,9 @@
             }
 
             this.ul.style.left = '-' + (100 * index) + '%';
-
+            console.log(this.ul.style.left);
             this.currentIndex = index;
-
+            console.log(index);
 
         },
 
@@ -124,18 +181,9 @@
 
 
     var slider = document.getElementsByClassName('slider')[0];
-    console.log(slider);
 
     var _s = new Slider(slider);
 
-
-//            todo: Animation Function for Slider
-//    setInterval(function(){
-//        //add a transition that moves slider
-//        slider_ul.insertBefore(slider_ul.children[count-1],
-//                slider_ul.firstElementChild);
-//        console.log('Test');
-//    }, 5000);
 
 </script>
 </body>
